@@ -6,16 +6,33 @@
 //  Copyright (c) 2014 MariAnne Skolnik. All rights reserved.
 //
 
-
 #import "Card.h"
+
+@interface Card()
+@property (nonatomic, strong) NSMutableArray* history;
+@end
 
 @implementation Card
 
--(int)match:(Card *)aCard {
-    if ([aCard.contents isEqualToString:self.contents]) {
-        return 1;
-    } else {
-        return 0;
-    }
+- (NSMutableArray *)history {
+    if (!_history) _history = [[NSMutableArray alloc] init];
+    return _history;
 }
+
+- (NSArray *)matchHistory {
+    return self.history;
+}
+
+- (int)match:(NSArray *)otherCards {
+    int score = 0;
+    
+    for (Card *card in otherCards) { // fast enumeration
+        if ([card.contents isEqualToString:self.contents]) {
+            score = 1;
+        }
+    }
+    
+    return score;
+}
+
 @end

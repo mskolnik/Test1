@@ -6,23 +6,29 @@
 //  Copyright (c) 2014 MariAnne Skolnik. All rights reserved.
 //
 
-
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
 
 @implementation PlayingCardDeck
-- (id)init {
+
+- (instancetype)init
+{
     self = [super init];
+    
     if (self) {
         for (NSString *suit in [PlayingCard validSuits]) {
-            for (NSUInteger i =1; i<[PlayingCard maxRank] ; i++) {
+            for (NSUInteger rank = 1; rank <= [PlayingCard maxRank]; rank++) {
                 PlayingCard *card = [[PlayingCard alloc] init];
-                card.rank = i;
                 card.suit = suit;
+                card.rank = rank;
+                
+                // add card
                 [self addCard:card];
             }
         }
     }
+    
     return self;
 }
+
 @end

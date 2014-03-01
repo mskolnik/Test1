@@ -10,17 +10,16 @@
 #import "Deck.h"
 
 @interface CardMatchingGame : NSObject
-{
-    
-}
 
-@property (nonatomic, strong) NSMutableArray *cards;
-@property (nonatomic, readonly) NSInteger *score;
-
-- (id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
+// designated initializer
+- (instancetype)initWithCardCount:(NSUInteger)count
+                        usingDeck:(Deck *)deck;
 
 - (void)chooseCardAtIndex:(NSUInteger)index;
-
 - (Card *)cardAtIndex:(NSUInteger)index;
 
+- (NSArray *)matchHistory;
+
+@property (nonatomic, readonly) NSInteger score; // make score read only in public API
+@property (nonatomic) NSInteger gameType; // the type of the game (0=two card, 1=three card)
 @end
